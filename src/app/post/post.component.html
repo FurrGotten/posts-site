@@ -1,14 +1,23 @@
-<div class="container">
-  <table class="">
+<div class="container-fluid">
+  <div class="row p-5 bg-dark text-white back-to-users" routerLink="/users">
+    <h1 class="col-6">< BACK TO USERS</h1>
+  </div>
+  <div class="row p-5">
+  <table class="table">
+    <thead>
     <tr class="">
-      <td class="">Id: </td>
-      <td class="">Title: </td>
-      <td class="">Body: </td>
+      <th class="">Id: </th>
+      <th class="">Title: </th>
+      <th class="">Body: </th>
     </tr>
+    </thead>
+    <tbody>
     <tr class="" *ngFor="let post of posts">
-      <td class="">{{post.id}}</td>
+      <th class="">{{post.id}}</th>
       <td class="">{{post.title}}</td>
       <td class="">{{post.body}}</td>
     </tr>
+    </tbody>
   </table>
+  </div>
 </div>

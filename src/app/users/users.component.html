@@ -1,30 +1,41 @@
-<div class="container">
-  <table>
-    <tr class="">
-      <td class="">Id: </td>
-      <td class="">Name: </td>
-      <td class="">UserName: </td>
-      <td class="">Email: </td>
-      <td class="">Address: </td>
-      <td class="">Phone: </td>
-      <td class="">Website: </td>
-      <td class="">Company: </td>
-      <td class=""></td>
-    </tr>
-    <tr class="" *ngFor="let user of users">
-      <td class="">{{user.id}}</td>
-      <td class="">{{user.name}}</td>
-      <td class="">{{user.username}}</td>
-      <td class="">{{user.email}}</td>
-      <td class="">{{getAddress(user.address)}}</td>
-      <td class="">{{user.phone}}</td>
-      <td class="">{{user.website}}</td>
-      <td class="">
-        {{user.company.name}}<br/>
-        {{user.company.catchPhrase}}<br/>
-        {{user.company.bs}}
-      </td>
-      <td class=""><button class="" routerLink="/post/{{user.id}}">POSTS</button></td>
-    </tr>
-  </table>
+<div class="container-fluid">
+  <div class="row p-5 bg-dark text-white">
+    <h1 class="col-6">OUR USERS</h1>
+  </div>
+  <div class="row p-5">
+    <table class="table col-12">
+      <thead>
+      <tr class="">
+        <th class="">Id:</th>
+        <th class="">Name:</th>
+        <th class="">UserName:</th>
+        <th class="">Email:</th>
+        <th class="">Address:</th>
+        <th class="">Phone:</th>
+        <th class="">Website:</th>
+        <th class="">Company:</th>
+        <th class=""></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="" *ngFor="let user of users">
+        <td class="">{{user.id}}</td>
+        <td class="">{{user.name}}</td>
+        <td class="">{{user.username}}</td>
+        <td class="">{{user.email}}</td>
+        <td class="">{{getAddress(user.address)}}</td>
+        <td class="">{{user.phone}}</td>
+        <td class="">{{user.website}}</td>
+        <td class="">
+          {{user.company.name}}<br/>
+          {{user.company.catchPhrase}}<br/>
+          {{user.company.bs}}
+        </td>
+        <td class="">
+          <button type="button" class="btn btn-dark" routerLink="/post/{{user.id}}">POSTS</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
