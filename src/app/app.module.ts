@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
+import { appStoreProviders } from "./app.store";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { PostComponent } from './post/post.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [appStoreProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

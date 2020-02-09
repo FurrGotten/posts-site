@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Store} from "redux";
 import {Observable} from "rxjs";
+import {AppState, AppStore} from "./app.store";
+import {fetchPostsComplete, fetchUsersStart, fetchPostsStart, fetchUsersComplete} from "./app.redux-actions";
 
 export interface UserAddress {
   street: string,
@@ -44,14 +47,24 @@ const baseUrl = 'https://jsonplaceholder.typicode.com';
 })
 export class DataService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, @Inject(AppStore) private store: Store<AppState>) { }
 
-  getUsers(): Observable<any>{
-    return this.httpClient.get(`${baseUrl}/users`)
+  getUsers() {
+    this.store.dispatch(fetchUsersStart());
+    this.httpClient.get(`${baseUrl}/users`).subscribe(
+      users => {
+        this.store.dispatch(fetchUsersComplete(users));
+      }
+    )
   }
 
-  getPosts(userId?: number): Observable<any>{
+  getPosts(userId?: number) {
+    this.store.dispatch(fetchPostsStart());
     const params = userId ? `?userId=${userId}` : '' ;
-    return this.httpClient.get(`${baseUrl}/posts${params}`)
+    this.httpClient.get(`${baseUrl}/posts${params}`).subscribe(
+      posts => {
+        this.store.dispatch(fetchPostsComplete(posts));
+      }
+    )
   }
 }
